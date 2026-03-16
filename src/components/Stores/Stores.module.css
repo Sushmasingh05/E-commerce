@@ -1,0 +1,133 @@
+.storesSection {
+  background-color: #E6A924; /* Vibrant Yellow from screenshot */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.topIllustration {
+  width: 100%;
+  background-color: #FDFDFD;
+  border-bottom: 2px solid #000;
+  overflow: hidden;
+}
+
+.illustrationImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.contentWrapper {
+  padding: 6rem 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.textContainer {
+  max-width: 800px;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: 6rem;
+  font-weight: 950;
+  color: #FFF;
+  margin-bottom: 1.5rem;
+  letter-spacing: -3px;
+  line-height: 0.9;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+.description {
+  font-size: 1.5rem;
+  color: #1a1a1a;
+  font-weight: 500;
+  margin-bottom: 3rem;
+}
+
+.storeBtn {
+  background: #1a1a1a;
+  color: #FFF;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.storeBtn:hover {
+  background: #333;
+  transform: scale(1.05);
+}
+
+.bottomBar {
+  background-color: #2D5A53; /* Dark Teal */
+  color: #FFF;
+  padding: 3rem 4rem;
+  border-top: 2px solid #000;
+}
+
+.barText {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.newsletter {
+  display: flex;
+  gap: 0;
+  border: 2px solid #FFF;
+}
+
+.newsletter input {
+  background: transparent;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  color: #FFF;
+  font-family: inherit;
+  font-size: 1rem;
+  width: 300px;
+}
+
+.newsletter input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.newsletter button {
+  background: #FFF;
+  color: #2D5A53;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.socials {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 1024px) {
+  .heading {
+    font-size: 4rem;
+  }
+  .barText {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .newsletter input {
+    width: 200px;
+  }
+}

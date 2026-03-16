@@ -1,23 +1,29 @@
+import React from 'react';
 import Link from 'next/link';
 import styles from './Footer.module.css';
 
-export default function Footer() {
+const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.topSection}>
-          <div className={styles.newsletter}>
-            <h2>STAY IN THE COOP</h2>
-            <form className={styles.form}>
-              <input type="email" placeholder="ENTER EMAIL" className={styles.input} />
-              <button type="submit" className={styles.submitBtn}>→</button>
-            </form>
+          <div className={styles.newsletterSection}>
+            <h3 className={styles.newsletterHeading}>STAY IN THE COOP</h3>
+            <div className={styles.newsletterForm}>
+              <input 
+                type="email" 
+                placeholder="Your email" 
+                className={styles.emailInput}
+              />
+              <button className={styles.submitBtn}>SIGN UP</button>
+            </div>
           </div>
           
-          <div className={styles.links}>
+          <div className={styles.linksGrid}>
             <div className={styles.linkColumn}>
               <Link href="/shop">SHOP</Link>
-              <Link href="/find">FIND US</Link>
+              <Link href="/find-us">FIND US</Link>
+              <Link href="/recipes">RECIPES</Link>
               <Link href="/about">ABOUT</Link>
             </div>
             <div className={styles.linkColumn}>
@@ -28,21 +34,33 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Large Logo Overlay */}
+        <div className={styles.largeLogoWrapper}>
+          <h1 className={styles.largeLogoText}>BARCOOP BEVY</h1>
+        </div>
+
         <div className={styles.bottomSection}>
           <div className={styles.brandGroup}>
             <span>SUPPORTING THE COCKTAIL CULTURE SINCE 2013</span>
             <div className={styles.logos}>
-              <span className={styles.logoItem}>BITTERMILK</span>
-              <span className={styles.logoItem}>BARCOOP BEVY</span>
-              <span className={styles.logoItem}>TIPPLEMAN'S</span>
+              <span>BITTERMILK</span>
+              <span>BARCOOP BEVY</span>
+              <span>TIPPLEMAN'S</span>
             </div>
           </div>
-          <div className={styles.copyright}>
+          
+          <div className={styles.legalInfo}>
             <p>&copy; {new Date().getFullYear()} BARCOOP BEVY | <Link href="/terms">Terms</Link> | <Link href="/privacy">Privacy</Link></p>
-            <p>Built with Next.js</p>
+            <div className={styles.socialIcons}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
         </div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;
