@@ -1,19 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap');
 
 :root {
-  --color-bg: #FCF5F0; /* light-peach */
-  --color-text: #2D2D2D; /* charcoal */
-  --color-dark: #3A4031; /* deep-olive */
-  --color-accent: #C5A059; /* muted-gold */
-  --color-warm-grey: #E5E2DC; /* warm-grey */
+  --color-bg: #F8F4F0; /* Bone / Parchment */
+  --color-text: #1A1A1A;
+  --color-dark: #322C2B; /* Deep Umber */
+  --color-white: #FFFFFF;
+  --color-accent: #2E3B2E; /* Forest Green */
+  --color-cyber-matcha: #A8B490; /* Muted Matcha / Sage */
   
   --font-heading: 'Playfair Display', serif;
   --font-body: 'Cormorant Garamond', serif;
-  --font-sans: 'Inter', sans-serif;
   
   --max-width: 1400px;
   --transition-smooth: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.3s ease;
 }
 
 * {
@@ -40,23 +40,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
   line-height: 1.1;
   margin-bottom: 1rem;
-}
-
-.font-serif-elegant {
-  font-family: 'Playfair Display', serif;
-}
-
-.font-serif-body {
-  font-family: 'Cormorant Garamond', serif;
-}
-
-.editorial-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-}
-
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
 }
 
 a {

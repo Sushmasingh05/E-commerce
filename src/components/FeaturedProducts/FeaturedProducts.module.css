@@ -1,41 +1,95 @@
 .section {
-  padding: 6rem 0;
-  background-color: transparent;
+  padding: 8rem 0; /* py-32 */
+  background-color: rgba(229, 226, 222, 0.3); /* var(--warm-grey)/30 */
 }
 
 .container {
-  max-width: 1280px;
+  max-width: 80rem; /* max-w-7xl */
   margin: 0 auto;
-  padding: 0 5%;
+  padding: 0 1.5rem; /* px-6 */
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 6rem; /* lg:px-24 */
+  }
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5rem; /* mb-20 */
+  padding-bottom: 2.5rem; /* pb-10 */
+  border-bottom: 1px solid rgba(58, 64, 49, 0.1);
+}
+
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+.exploreLink {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-decoration: none;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+  transition: all 0.3s ease;
+}
+
+.exploreLink:hover {
+  border-bottom-color: var(--color-accent);
+  opacity: 1;
 }
 
 .title {
-  font-size: 3.5rem;
-  color: inherit;
-  margin-bottom: 1rem;
-  letter-spacing: -1px;
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4.5rem); /* Calibrated font size */
+  line-height: 1.1; /* Added line-height */
+  color: var(--color-dark);
+  margin-bottom: 2rem; /* Changed from 0 */
+  letter-spacing: -0.02em;
+  font-weight: 400;
 }
 
 .subtitle {
-  font-size: 1.2rem;
-  color: inherit;
-  opacity: 0.8;
-  max-width: 600px;
-  margin: 0 auto;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  margin-top: 1rem;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 6rem;
 }
 
-.action {
-  text-align: center;
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8rem 6rem;
+  }
+}
+
+.offsetDown {
+  margin-top: 8rem;
+}
+
+@media (max-width: 768px) {
+  .offsetDown {
+    margin-top: 0;
+  }
 }

@@ -1,54 +1,91 @@
-import ProductCard from '../ProductCard/ProductCard';
+import ProductCard from '../ProductCard';
 import styles from './FeaturedProducts.module.css';
 
-const PRODUCTS = [
-  {
-    id: 1,
-    title: 'BLOODY MARY',
-    flavor: 'WITH SMOKED SEA SALT AND CHILES',
-    imageColor: '#F5E6E6', // Light red bg
-    accentColor: '#D32F2F', // Red
+const CONTENT = {
+  coffee: {
+    title: 'The Coffee Archives',
+    subtitle: 'Single Origin Curations',
+    linkText: 'EXPLORE SELECTED ROASTS →',
+    products: [
+      {
+        id: 1,
+        category: 'coffee',
+        location: 'Karnataka High Highlands',
+        title: 'Malabar Monsoon',
+        flavor: 'Aged by the salt-laden winds of the Arabian Sea. Heavy body, low acidity.',
+        image: '/images/coffee_bag.png',
+        price: '₹749',
+        roast: 'Medium-Dark',
+        altitude: '1,200 MASL'
+      },
+      {
+        id: 2,
+        category: 'coffee',
+        location: 'Baba Budan Giri Range',
+        title: 'Espresso Reserve',
+        flavor: 'The birthplace of Indian coffee. A profound, velvety cup with dark chocolate undertones.',
+        image: '/images/espresso_bag.png',
+        price: '₹699',
+        roast: 'Dark',
+        altitude: '1,350 MASL'
+      }
+    ]
   },
-  {
-    id: 2,
-    title: 'MARGARITA',
-    flavor: 'WITH LIME, TANGERINE AND FLORIDA GOLDEN CANE SUGAR',
-    imageColor: '#EAF5E6', // Light green bg
-    accentColor: '#388E3C', // Green
-  },
-  {
-    id: 3,
-    title: 'MOJITO',
-    flavor: 'WITH MINT, LIME AND CANE SUGAR',
-    imageColor: '#E6F0F5', // Light teal bg
-    accentColor: '#00796B', // Teal
+  tea: {
+    title: 'The Tea Atelier',
+    subtitle: 'High Altitude Harvests',
+    linkText: 'DISCOVER RARE LEAVES →',
+    products: [
+      {
+        id: 10,
+        category: 'tea',
+        location: 'Uji, Japan',
+        title: 'Ceremonial Matcha',
+        flavor: 'Stone-ground heritage grade with deep umami and vibrant sweetness.',
+        image: '/images/matcha_jar.png',
+        price: '₹2,450',
+        roast: '', // Not used for tea
+        altitude: 'Shaded Garden'
+      },
+      {
+        id: 11,
+        category: 'tea',
+        location: 'Darjeeling, India',
+        title: 'Summer Muscatel',
+        flavor: 'A rare second-flush harvest with distinct floral and ripe fruit notes.',
+        image: '/images/tea_canister.png',
+        price: '₹1,250',
+        roast: '',
+        altitude: '2,100 MASL'
+      }
+    ]
   }
-];
+};
 
-export default function FeaturedProducts() {
+interface FeaturedProductsProps {
+  type?: 'coffee' | 'tea';
+}
+
+export default function FeaturedProducts({ type = 'coffee' }: FeaturedProductsProps) {
+  const data = CONTENT[type];
+
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id={type === 'coffee' ? 'collections' : 'tea-collections'}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>MEET THE COCKTAIL COOP</h2>
-          <p className={styles.subtitle}>Premium mixers designed for the perfect pour, every time.</p>
+          <div className={styles.headerLeft}>
+            <h2 className={styles.title}>{data.title}</h2>
+            <p className={styles.subtitle}>{data.subtitle}</p>
+          </div>
+          <a href="/shop" className={styles.exploreLink}>{data.linkText}</a>
         </div>
-        
+
         <div className={styles.grid}>
-          {PRODUCTS.map(product => (
-            <ProductCard 
-              key={product.id}
-              id={product.id}
-              title={product.title}
-              flavor={product.flavor}
-              imageColor={product.imageColor}
-              accentColor={product.accentColor}
-            />
+          {data.products.map((product, index) => (
+            <div key={product.id} className={index % 2 === 1 ? styles.offsetDown : ''}>
+              <ProductCard {...product} />
+            </div>
           ))}
-        </div>
-        
-        <div className={styles.action}>
-          <a href="/shop" className="btn btn-lime">SHOP ALL MIXERS</a>
         </div>
       </div>
     </section>

@@ -1,82 +1,197 @@
+.cardWrapper {
+  perspective: 2000px;
+  width: 100%;
+}
+
 .card {
+  background: #FFF;
+  border-radius: 2px;
+  overflow: visible;
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-bg);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.08);
 }
 
 .imageContainer {
-  height: 350px;
+  height: auto;
+  aspect-ratio: 4/5;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
+  padding: 3rem;
+  background-color: var(--color-bg);
 }
 
-/* Simple CSS bottle representation for placeholder */
-.bottleShape {
-  width: 100px;
-  height: 250px;
-  background-color: rgba(255,255,255,0.9);
-  border-radius: 40px 40px 10px 10px;
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
   position: relative;
-  border-bottom: 40px solid #333; /* Will be overridden by accent color */
 }
 
-.bottleShape::before {
-  content: '';
+.productImage {
+  object-fit: contain;
+  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card:hover .productImage {
+  transform: scale(1.1);
+}
+
+.hoverOverlay {
   position: absolute;
-  top: -30px;
-  left: 30%;
-  width: 40%;
-  height: 30px;
-  background-color: #DDD;
-  border-radius: 5px 5px 0 0;
+  inset: 0;
+  background-color: rgba(58, 64, 49, 0.05); /* var(--deep-olive)/5 */
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.content {
-  padding: 1.5rem;
-  text-align: center;
+.card:hover .hoverOverlay {
+  opacity: 1;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.location {
+  font-family: var(--font-sans);
+  font-size: 0.625rem; /* text-[10px] */
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  color: var(--color-accent);
+  display: block;
+  margin-bottom: 0.25rem;
 }
 
 .title {
   font-family: var(--font-heading);
-  font-size: 1.8rem;
+  font-size: 1.75rem; /* text-2xl+ */
+  color: var(--color-dark);
+  font-weight: 400;
+  line-height: 1.2;
+  flex: 1;
+  padding-right: 1rem;
+}
+
+.price {
+  font-family: var(--font-body);
+  font-size: 1.25rem; /* text-xl */
+  font-style: italic;
   color: var(--color-text);
-  margin-bottom: 0.5rem;
+  white-space: nowrap;
 }
 
 .flavor {
-  font-size: 0.9rem;
-  color: #666;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-family: var(--font-body);
+  font-size: 0.875rem; /* text-sm */
+  color: rgba(45, 45, 45, 0.8); /* var(--charcoal)/80 */
+  line-height: 1.625;
+  font-style: italic;
   margin-bottom: 1.5rem;
-  min-height: 44px;
+}
+
+.metadataGrid {
+  display: flex;
+  gap: 1rem;
+  border-top: 1px solid var(--color-warm-grey);
+  padding-top: 1.5rem;
+}
+
+.metaItem {
+  flex: 1;
+}
+
+.metaLabel {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: -0.05em; /* tracking-tighter */
+  color: rgba(45, 45, 45, 0.5); /* var(--charcoal)/50 */
+}
+
+.metaValue {
+  font-family: var(--font-sans);
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.cardFooter {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(58, 64, 49, 0.08);
 }
 
 .addBtn {
-  width: 100%;
-  padding: 1rem;
-  border-radius: 50px;
-  color: var(--color-white);
-  font-size: 1.1rem;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-dark);
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  transition: opacity 0.2s;
+  letter-spacing: 0.25em;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid transparent;
+  width: 100%;
+  text-align: left;
+  transition: all 0.3s ease;
 }
 
-.addBtn:hover {
-  opacity: 0.9;
+.addBtn:hover:not(:disabled) {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.addBtn:disabled {
+  color: var(--color-accent);
+  opacity: 0.8;
+  cursor: default;
+}
+
+.addToCartFloating {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--color-dark);
+  color: var(--color-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 20;
+}
+
+.card:hover .addToCartFloating {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.addToCartFloating:hover {
+  background-color: var(--color-accent);
+  transform: scale(1.1);
+}
+
+.addToCartFloating span {
+  font-size: 1.25rem;
 }

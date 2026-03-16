@@ -1,12 +1,18 @@
-import Link from 'next/link';
-import styles from './page.module.css';
+'use client';
 
-const MOCK_CART = [
-  { id: 1, title: 'MARGARITA MIXER', price: '$15.00', quantity: 2, imageColor: '#EAF5E6' },
-  { id: 2, title: 'OLD FASHIONED MIXER', price: '$20.00', quantity: 1, imageColor: '#F5E6ED' },
-];
+import Link from 'next/link';
+import Image from 'next/image';
+import styles from './page.module.css';
+import { useCart } from '@/context/CartContext';
 
 export default function Cart() {
+  const { cartItems, updateQuantity, removeFromCart } = useCart();
+
+  const subtotal = cartItems.reduce((total, item) => {
+    const priceNum = parseFloat(item.price.replace(/[₹,]/g, ''));
+    return total + (priceNum * item.quantity);
+  }, 0);
+
   return (
     <main className={styles.main}>
       <div className={styles.container}>
@@ -17,42 +23,54 @@ export default function Cart() {
 
         <div className={styles.content}>
           <div className={styles.itemsBlock}>
-            <div className={styles.labels}>
-              <span>PRODUCT</span>
-              <span>QUANTITY</span>
-              <span>TOTAL</span>
-            </div>
-            
-            <div className={styles.itemsList}>
-              {MOCK_CART.map(item => (
-                <div key={item.id} className={styles.item}>
-                  <div className={styles.itemInfo}>
-                    <div className={styles.itemImage} style={{ backgroundColor: item.imageColor }}></div>
-                    <div className={styles.itemDetails}>
-                      <h3>{item.title}</h3>
-                      <p>{item.price}</p>
-                    </div>
-                  </div>
-                  <div className={styles.quantityControls}>
-                    <button className={styles.qtyBtn}>-</button>
-                    <span>{item.quantity}</span>
-                    <button className={styles.qtyBtn}>+</button>
-                  </div>
-                  <div className={styles.itemTotal}>
-                    ${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(2)}
-                  </div>
+            {cartItems.length === 0 ? (
+              <div className={styles.emptyCart}>
+                <p>Your sanctuary is currently vacant.</p>
+                <Link href="/shop" className={styles.goBtn}>RETURN TO ATELIER</Link>
+              </div>
+            ) : (
+              <>
+                <div className={styles.labels}>
+                  <span>PRODUCT</span>
+                  <span>QUANTITY</span>
+                  <span>TOTAL</span>
                 </div>
-              ))}
-            </div>
+                
+                <div className={styles.itemsList}>
+                  {cartItems.map(item => (
+                    <div key={item.id} className={styles.item}>
+                      <div className={styles.itemInfo}>
+                        <div className={styles.itemImage}>
+                          <Image src={item.image} alt={item.title} fill style={{ objectFit: 'contain', padding: '1rem' }} />
+                        </div>
+                        <div className={styles.itemDetails}>
+                          <h3>{item.title}</h3>
+                          <p>{item.price}</p>
+                          <button onClick={() => removeFromCart(item.id)} className={styles.removeBtn}>Remove Item</button>
+                        </div>
+                      </div>
+                      <div className={styles.quantityControls}>
+                        <button onClick={() => updateQuantity(item.id, -1)} className={styles.qtyBtn}>—</button>
+                        <span>{item.quantity}</span>
+                        <button onClick={() => updateQuantity(item.id, 1)} className={styles.qtyBtn}>+</button>
+                      </div>
+                      <div className={styles.itemTotal}>
+                        ₹{(parseFloat(item.price.replace(/[₹,]/g, '')) * item.quantity).toLocaleString('en-IN')}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
 
           <div className={styles.summaryBlock}>
             <div className={styles.summaryRow}>
-              <span>SUBTOTAL</span>
-              <span>$50.00</span>
+              <span>CONSOLIDATED TOTAL</span>
+              <span>₹{subtotal.toLocaleString('en-IN')}</span>
             </div>
-            <p className={styles.shippingText}>Shipping & taxes calculated at checkout.</p>
-            <button className="btn btn-lime" style={{ width: '100%' }}>CHECKOUT</button>
+            <p className={styles.shippingText}>Shipping and artisanal handling calculated at checkout.</p>
+            <button className={styles.btnCheckout} disabled={cartItems.length === 0}>PROCEED TO RITUAL —</button>
           </div>
         </div>
       </div>

@@ -1,61 +1,153 @@
-.hero {
-  height: 90vh;
-  min-height: 600px;
-  /* Using a vibrant high-quality cocktail/citrus placeholder image */
-  background-image: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070&auto=format&fit=crop');
-  background-size: cover;
-  background-position: center;
+.section {
   position: relative;
+  min-height: 90vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding: 3rem 1.5rem; /* py-12 px-6 */
+  background-color: var(--color-bg);
 }
 
-.overlay {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  /* Subtle vignette to make text pop */
-  background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.3) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 5%;
+@media (min-width: 1024px) {
+  .section {
+    padding: 3rem 6rem; /* lg:px-24 */
+  }
 }
 
-.content {
-  text-align: center;
-  width: 100%;
+.textContent {
+  grid-column: span 12;
+  z-index: 10;
+}
+
+@media (min-width: 1024px) {
+  .textContent {
+    grid-column: span 5;
+  }
+}
+
+.overline {
+  display: inline-block;
+  color: var(--color-accent);
+  font-size: 0.75rem; /* text-xs */
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  margin-bottom: 1.5rem; /* mb-6 */
+  font-weight: 600;
+  font-family: var(--font-sans);
 }
 
 .title {
-  display: flex;
-  flex-direction: column;
   font-family: var(--font-heading);
-  color: #FDFCF0;
-  /* Distinct retro drop shadow matching brand style */
-  text-shadow: 6px 6px 0px rgba(46, 91, 77, 0.9); 
-  line-height: 0.9;
-  letter-spacing: -1px;
+  font-size: clamp(3.75rem, 8vw, 6rem); /* text-6xl lg:text-8xl */
+  line-height: 1.1;
+  margin-bottom: 2rem; /* mb-8 */
+  color: var(--color-dark);
+  font-weight: 400;
 }
 
-.line1 {
-  font-size: clamp(3rem, 9vw, 8rem);
+.italic {
+  font-style: italic;
+}
+
+.description {
+  font-family: var(--font-body);
+  font-size: 1.125rem; /* text-lg lg:text-xl */
+  color: var(--color-text);
+  margin-bottom: 2.5rem; /* mb-10 */
+  max-width: 28rem; /* max-w-md */
+  line-height: 1.625; /* leading-relaxed */
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--color-dark);
+  padding-bottom: 0.5rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.cta:hover {
+  border-color: var(--color-accent);
+}
+
+.ctaText {
+  font-family: var(--font-sans);
+  font-size: 0.75rem; /* text-xs */
   text-transform: uppercase;
-  margin-bottom: -1rem;
+  letter-spacing: 0.3em;
+  font-weight: 700;
+  color: var(--color-dark);
 }
 
-.line2 {
-  font-size: clamp(2.5rem, 8vw, 7.5rem);
+.cta:hover .ctaText {
+  color: var(--color-accent);
+}
+
+.cta:hover span:last-child {
+  transform: translateX(0.5rem);
+}
+
+.cta span:last-child {
+  color: var(--color-accent);
+  transition: transform 0.3s ease;
+}
+
+.visualContent {
+  grid-column: span 12;
+  position: relative;
+  height: 600px;
+}
+
+@media (min-width: 1024px) {
+  .visualContent {
+    grid-column: span 7;
+    height: 800px;
+  }
+}
+
+.mainImageWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+}
+
+.mainImage {
+  object-fit: cover;
+}
+
+.notesBox {
+  display: none;
+  position: absolute;
+  bottom: -3rem;
+  left: -3rem;
+  background-color: var(--color-dark);
+  padding: 3rem;
+  color: var(--color-warm-grey);
+  max-width: 20rem; /* max-w-xs */
+  z-index: 20;
+}
+
+@media (min-width: 1024px) {
+  .notesBox {
+    display: block;
+  }
+}
+
+.noteItalic {
+  font-family: var(--font-body);
+  font-size: 0.875rem; /* text-sm */
+  font-style: italic;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.noteBadge {
+  font-family: var(--font-sans);
+  font-size: 9px;
   text-transform: uppercase;
-}
-
-/* Add a subtle float animation */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
-.title {
-  animation: float 6s ease-in-out infinite;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--color-accent);
 }

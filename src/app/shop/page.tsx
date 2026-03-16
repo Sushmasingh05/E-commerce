@@ -1,42 +1,106 @@
-import ProductCard from '@/components/ProductCard/ProductCard';
+import ProductCard from '@/components/ProductCard';
 import styles from './page.module.css';
 
-const ALL_PRODUCTS = [
-  { id: 1, title: 'BLOODY MARY', flavor: 'WITH SMOKED SEA SALT AND CHILES', imageColor: '#F5E6E6', accentColor: '#D32F2F', price: '$15.00' },
-  { id: 2, title: 'MARGARITA', flavor: 'WITH LIME, TANGERINE AND CANE SUGAR', imageColor: '#EAF5E6', accentColor: '#388E3C', price: '$15.00' },
-  { id: 3, title: 'MOJITO', flavor: 'WITH MINT, LIME AND CANE SUGAR', imageColor: '#E6F0F5', accentColor: '#00796B', price: '$15.00' },
-  { id: 4, title: 'PALOMA', flavor: 'WITH GRAPEFRUIT, LIME AND AGAVE', imageColor: '#FDF1E6', accentColor: '#F57C00', price: '$15.00' },
-  { id: 5, title: 'SOUR MIX', flavor: 'WITH HONEY AND LEMON', imageColor: '#F9F5DE', accentColor: '#FBC02D', price: '$15.00' },
-  { id: 6, title: 'OLD FASHIONED', flavor: 'WITH CHERRY AND BITTERS', imageColor: '#F5E6ED', accentColor: '#C2185B', price: '$20.00' },
+const COFFEE_PRODUCTS = [
+  { 
+    id: 1, 
+    title: 'Malabar Monsoon', 
+    category: 'coffee', 
+    location: 'Karnataka High Highlands',
+    flavor: 'Aged by the salt-laden winds of the Arabian Sea. Heavy body, low acidity.', 
+    image: '/images/coffee_bag.png', 
+    price: '₹749',
+    roast: 'Medium-Dark',
+    altitude: '1,200 MASL'
+  },
+  { 
+    id: 2, 
+    title: 'Espresso Reserve', 
+    category: 'coffee', 
+    location: 'Baba Budan Giri',
+    flavor: 'A profound, velvety cup with dark chocolate undertones.', 
+    image: '/images/espresso_bag.png', 
+    price: '₹699',
+    roast: 'Dark',
+    altitude: '1,350 MASL'
+  },
+  { 
+    id: 3, 
+    title: 'Mysore Nuggets', 
+    category: 'coffee', 
+    location: 'Bababudangiris',
+    flavor: 'Premium AAA grade beans with notes of caramel and toasted hazelnut.', 
+    image: '/images/coffee_bag.png', 
+    price: '₹850',
+    roast: 'Medium',
+    altitude: '1,400 MASL'
+  },
+];
+
+const TEA_PRODUCTS = [
+  { 
+    id: 10, 
+    title: 'Ceremonial Matcha', 
+    category: 'tea', 
+    location: 'Uji, Japan',
+    flavor: 'Stone-ground heritage grade with deep umami and vibrant sweetness.', 
+    image: '/images/matcha_jar.png', 
+    price: '₹2,450',
+    roast: '',
+    altitude: 'Shaded Garden'
+  },
+  { 
+    id: 11, 
+    title: 'Earl Grey Reserve', 
+    category: 'tea', 
+    location: 'Sri Lanka Highlands',
+    flavor: 'Bergamot-infused black tea with delicate blue cornflower petals.', 
+    image: '/images/tea_canister.png', 
+    price: '₹1,100',
+    roast: '',
+    altitude: '1,500 MASL'
+  },
+  { 
+    id: 12, 
+    title: 'Silver Needle White', 
+    category: 'tea', 
+    location: 'Fujian, China',
+    flavor: 'Sun-dried buds with a delicate, honeyed sweetness and floral aroma.', 
+    image: '/images/tea_canister.png', 
+    price: '₹3,200',
+    roast: '',
+    altitude: '1,800 MASL'
+  },
 ];
 
 export default function Shop() {
   return (
     <main className={styles.main}>
-      <div className={styles.headerArea}>
+      <header className={styles.headerArea}>
         <div className="container">
-          <h1 className={styles.title}>SHOP ALL</h1>
-          <p className={styles.subtitle}>Premium mixers for your home bar.</p>
+          <h1 className={styles.title}>The Collection</h1>
+          <p className={styles.subtitle}>Curated rare cultivars and single-estate harvests.</p>
         </div>
-      </div>
+      </header>
       
       <div className={styles.shopContainer}>
-        <div className={styles.grid}>
-          {ALL_PRODUCTS.map(product => (
-            <div key={product.id} className={styles.productWrapper}>
-              <ProductCard 
-                id={product.id}
-                title={product.title}
-                flavor={product.flavor}
-                imageColor={product.imageColor}
-                accentColor={product.accentColor}
-              />
-              <div className={styles.priceRow}>
-                <span className={styles.price}>{product.price}</span>
-              </div>
-            </div>
-          ))}
-        </div>
+        <section className={styles.categorySection}>
+          <h2 className={styles.categoryHeading}>Coffee Roastery</h2>
+          <div className={styles.grid}>
+            {COFFEE_PRODUCTS.map(product => (
+              <ProductCard key={product.id} {...product} />
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.categorySection}>
+          <h2 className={styles.categoryHeading}>The Tea Atelier</h2>
+          <div className={styles.grid}>
+            {TEA_PRODUCTS.map(product => (
+              <ProductCard key={product.id} {...product} />
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );

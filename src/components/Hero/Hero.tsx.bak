@@ -1,0 +1,115 @@
+'use client';
+
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import styles from './Hero.module.css';
+
+export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Scroll Parallax
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const rotateScroll = useTransform(scrollYProgress, [0, 1], [0, -10]);
+
+  // Mouse Tilt
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
+  const marqueeText = "COLD BREW REVOLUTION • ARTISAN ROASTS • GLOBAL SHIPPING • LIMITED DROPS • ";
+
+  return (
+    <section 
+      className={styles.hero} 
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className={styles.noiseOverlay} />
+      
+      <motion.div 
+        className={styles.content}
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d"
+        }}
+      >
+        <motion.div 
+          className={styles.titleWrapper}
+          style={{ rotate: rotateScroll, transformStyle: "preserve-3d" }}
+        >
+          <motion.h1 
+            className={styles.giantTitle}
+            style={{ y: y1, translateZ: "100px" }}
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            BREW
+          </motion.h1>
+          <motion.h1 
+            className={styles.giantTitleOutline}
+            style={{ y: y2, translateZ: "50px" }}
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          >
+            STEEP
+          </motion.h1>
+        </motion.div>
+
+        <motion.p 
+          className={styles.subtitle}
+          style={{ translateZ: "30px" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+        >
+          Caffeine Culture for the Modern Ritual.
+        </motion.p>
+      </motion.div>
+
+      <div className={styles.marquee}>
+        <motion.div 
+          className={styles.marqueeInner}
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        >
+          <span>{marqueeText.repeat(8)}</span>
+        </motion.div>
+      </div>
+
+      <div className={styles.scrollIndicator}>
+        <motion.div 
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          ↓
+        </motion.div>
+      </div>
+    </section>
+  );
+}

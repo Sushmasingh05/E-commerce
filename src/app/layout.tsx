@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Barcoop Bevy | All Natural Cocktail Mixers",
-  description: "Premium all-natural cocktail mixers for the perfect drink.",
+  title: "Brew & Steep | The Connoisseur's Ritual",
+  description: "Artisan coffee and tea for the modern ritual. Sourced with heritage, roasted with precision.",
 };
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="noise-overlay">
         <CartProvider>
           <Navbar />
           {children}
