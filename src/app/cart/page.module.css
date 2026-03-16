@@ -1,0 +1,143 @@
+.main {
+  background-color: var(--color-bg);
+  min-height: 80vh;
+  padding: 4rem 0 8rem;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 2px solid var(--color-dark);
+  padding-bottom: 1rem;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: 3rem;
+  color: var(--color-text);
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+.continueLink {
+  color: #666;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.labels {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #888;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 1rem;
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  align-items: center;
+  padding: 2rem 0;
+  border-bottom: 1px solid #EEE;
+}
+
+.itemInfo {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.itemImage {
+  width: 80px;
+  height: 100px;
+  background-color: #EEE;
+  border-radius: 8px;
+}
+
+.itemDetails h3 {
+  font-size: 1.2rem;
+  color: var(--color-text);
+  margin-bottom: 0.2rem;
+}
+
+.itemDetails p {
+  color: #666;
+  font-weight: 500;
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.qtyBtn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  font-size: 1.2rem;
+  font-family: var(--font-body);
+}
+
+.qtyBtn:hover {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  border-color: var(--color-dark);
+}
+
+.itemTotal {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.summaryBlock {
+  align-self: flex-end;
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--color-white);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.shippingText {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
