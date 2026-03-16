@@ -25,6 +25,7 @@ export default function Shop() {
           {ALL_PRODUCTS.map(product => (
             <div key={product.id} className={styles.productWrapper}>
               <ProductCard 
+                id={product.id}
                 title={product.title}
                 flavor={product.flavor}
                 imageColor={product.imageColor}

@@ -38,6 +38,7 @@ export default function FeaturedProducts() {
           {PRODUCTS.map(product => (
             <ProductCard 
               key={product.id}
+              id={product.id}
               title={product.title}
               flavor={product.flavor}
               imageColor={product.imageColor}

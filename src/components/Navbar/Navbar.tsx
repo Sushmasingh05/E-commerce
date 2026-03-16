@@ -1,7 +1,12 @@
+'use client';
+
 import Link from 'next/link';
 import styles from './Navbar.module.css';
+import { useCart } from '@/context/CartContext';
 
 export default function Navbar() {
+  const { cartCount } = useCart();
+
   return (
     <header className={styles.header}>
       {/* Top Bar for sister brands */}
@@ -28,7 +33,7 @@ export default function Navbar() {
             <Link href="/about" className={styles.navLink}>ABOUT</Link>
             
             <Link href="/cart" className={styles.basketBtn}>
-              BASKET <span className={styles.basketCount}>0</span>
+              BASKET <span className={styles.basketCount}>{cartCount}</span>
             </Link>
           </div>
         </div>
